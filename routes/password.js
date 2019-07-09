@@ -16,7 +16,7 @@ router.post('/register', (request, response) => {
     let username = request.body.username;
     let password = request.body.password;
     let name     = request.body.name;
-
+    
     if(database[username]) {
         response.json({
             'status': 'failed',
@@ -25,13 +25,14 @@ router.post('/register', (request, response) => {
 
         return
     }
-
-
+    
+    
     database[username] = {
         'password': password,
         'name': name,
         'id': utils.randomBase64URLBuffer()
     }
+    console.log(database);
 
     request.session.loggedIn = true;
     request.session.username = username
@@ -53,7 +54,9 @@ router.post('/login', (request, response) => {
 
     let username = request.body.username;
     let password = request.body.password;
-
+    
+    console.log(request.body)
+    console.log(database);
     if(!database[username] || database[username].password !== password) {
         response.json({
             'status': 'failed',

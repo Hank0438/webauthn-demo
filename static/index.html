@@ -7,21 +7,17 @@
         html, body, .container, .row {
             height: 100%;
         }
-
         .formcontainer {
             background: #f0f0f0;
             padding: 15px;
         }
-
         .formcontainer form, .formcontainer fieldset{
             margin:0;
         }
-
         .secretcontainer {
             background: #f0f0f0;
             padding: 15px;
         }
-
         #registerContainer, #mainContainer {
             display: none;
         }
@@ -40,7 +36,8 @@
                         <input type="text" name="name">
                         <label for="username">username</label>
                         <input type="text" name="username">
-
+                        <label for="password">password</label>
+                        <input type="text" name="password">
                         <input class="button-primary" type="submit" value="Register">
                       </fieldset>
                     </form>
@@ -56,11 +53,14 @@
                       <fieldset>
                         <label for="username">username</label>
                         <input type="text" name="username">
-
+                        <label for="password">password</label>
+                        <input type="text" name="password">
                         <input class="button-primary" type="submit" value="Login">
                       </fieldset>
                     </form>
-
+                    <form id="AdminLogin">
+                        <input class="button-primary" type="submit" value="Admin">
+                    </form>
                     <a href="#" id="toRegistration">Not registered yet? Registration</a>
                 </div>
             </div>
