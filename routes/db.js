@@ -59,5 +59,18 @@ client.connect(function(err, client) {
     });
 });
 
-let database = {};
+let database = {
+    admin:
+        { name: 'Hank',
+          registered: true,
+          id: 'bM1cHI8WzhII4yAqXe9WTvg119BTihtev8H0ci2EmdI',
+          authenticators: 
+            [ { fmt: 'fido-u2f',
+                publicKey:
+                'BCQOGm3axfEd7E4k7EMm7DK_GkEmALZFqtYn_t3XluKCG4BmI_lGC4Kj1va8ueTxQROL48edyKc7_ymrWl8f4Jw',
+                counter: 76,
+                credID:
+                'S0nX4YkP9cBF9Y785dCerPtyxdPhBg6kYA3hh13LqE2xyzg2GIitNa44wqaegCWUvaDRgNVoWSBju3J2J_-Ohg' } ]
+        } 
+};
 module.exports = database;

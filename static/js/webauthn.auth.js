@@ -95,39 +95,22 @@ $('#AdminLogin').submit(function(event) {
     
     let username = "admin";
     let name     = "Hank";
-   
-    getMakeCredentialsChallenge({username, name})
+
+    getGetAssertionChallenge({username})
         .then((response) => {
-            let publicKey = preformatMakeCredReq(response);
-            return navigator.credentials.create({ publicKey })
+            let publicKey = preformatGetAssertReq(response);
+            return navigator.credentials.get({ publicKey })
         })
         .then((response) => {
-            let makeCredResponse = publicKeyCredentialToJSON(response);
-            return sendWebAuthnResponse(makeCredResponse)
+            let getAssertionResponse = publicKeyCredentialToJSON(response);
+            return sendWebAuthnResponse(getAssertionResponse)
         })
         .then((response) => {
-            if(response.status !== 'ok') {
+            if(response.status === 'ok') {
+                loadMainContainer()   
+            } else {
                 alert(`Server responed with error. The message is: ${response.message}`);
             }
-        }).then((response) => {
-
-            getGetAssertionChallenge({username})
-                .then((response) => {
-                    let publicKey = preformatGetAssertReq(response);
-                    return navigator.credentials.get({ publicKey })
-                })
-                .then((response) => {
-                    let getAssertionResponse = publicKeyCredentialToJSON(response);
-                    return sendWebAuthnResponse(getAssertionResponse)
-                })
-                .then((response) => {
-                    if(response.status === 'ok') {
-                        loadMainContainer()   
-                    } else {
-                        alert(`Server responed with error. The message is: ${response.message}`);
-                    }
-                })
-                .catch((error) => alert(error))
         })
         .catch((error) => alert(error))
 

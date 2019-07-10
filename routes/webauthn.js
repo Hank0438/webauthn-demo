@@ -8,7 +8,7 @@ const database  = require('./db');
 /* ---------- ROUTES START ---------- */
 
 router.post('/register', (request, response) => {
-    console.log(database);
+    //console.log(database);
     if(!request.body || !request.body.username || !request.body.name) {
         response.json({
             'status': 'failed',
@@ -44,6 +44,8 @@ router.post('/register', (request, response) => {
     request.session.username  = username;
 
     response.json(challengeMakeCred)
+    console.log("challengeMakeCred: \n")
+    console.log(challengeMakeCred)
 })
 
 
@@ -80,6 +82,8 @@ router.post('/response', (request, response) => {
 
    
     let result;
+    console.log("webauthnResp: \n")
+    console.log(webauthnResp)
     if(webauthnResp.response.attestationObject !== undefined) {
         /* This is create cred */
         result = utils.verifyAuthenticatorAttestationResponse(webauthnResp);
@@ -122,7 +126,9 @@ router.post('/login', (request, response) => {
 
     let username = request.body.username;
 
+    console.log("db: \n")
     console.log(database)
+    console.log(database[username].authenticators)
     if(!database[username] || !database[username].registered) {
         response.json({
             'status': 'failed',
@@ -139,6 +145,8 @@ router.post('/login', (request, response) => {
     request.session.username  = username;
 
     response.json(getAssertion)
+    console.log("getAssertion: \n")
+    console.log(getAssertion)
 })
 /* ---------- ROUTES END ---------- */
 
