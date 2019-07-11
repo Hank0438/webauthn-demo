@@ -46,6 +46,7 @@ var insertDocuments = function(db, callback) {
 }
 
 // Use connect method to connect to the Server
+/*
 client.connect(function(err, client) {
     assert.equal(null, err);
     console.log("Connected correctly to server");
@@ -58,6 +59,7 @@ client.connect(function(err, client) {
         });
     });
 });
+*/
 
 let database = {
     admin:
@@ -68,7 +70,7 @@ let database = {
             [ { fmt: 'fido-u2f',
                 publicKey:
                 'BCQOGm3axfEd7E4k7EMm7DK_GkEmALZFqtYn_t3XluKCG4BmI_lGC4Kj1va8ueTxQROL48edyKc7_ymrWl8f4Jw',
-                counter: 76,
+                counter: 76, // not importants
                 credID:
                 'S0nX4YkP9cBF9Y785dCerPtyxdPhBg6kYA3hh13LqE2xyzg2GIitNa44wqaegCWUvaDRgNVoWSBju3J2J_-Ohg' } ]
         } 

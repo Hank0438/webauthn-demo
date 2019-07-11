@@ -88,6 +88,7 @@ router.post('/response', (request, response) => {
         /* This is create cred */
         result = utils.verifyAuthenticatorAttestationResponse(webauthnResp);
 
+        console.log('result: ', result)
         if(result.verified) {
             database[request.session.username].authenticators.push(result.authrInfo);
             database[request.session.username].registered = true
@@ -95,6 +96,7 @@ router.post('/response', (request, response) => {
     } else if(webauthnResp.response.authenticatorData !== undefined) {
         /* This is get assertion */
         result = utils.verifyAuthenticatorAssertionResponse(webauthnResp, database[request.session.username].authenticators);
+        console.log('result: ', result)
     } else {
         response.json({
             'status': 'failed',
@@ -126,9 +128,9 @@ router.post('/login', (request, response) => {
 
     let username = request.body.username;
 
-    console.log("db: \n")
+    console.log("db:")
     console.log(database)
-    console.log(database[username].authenticators)
+    console.log('authenticatorsObject: ', database[username].authenticators)
     if(!database[username] || !database[username].registered) {
         response.json({
             'status': 'failed',

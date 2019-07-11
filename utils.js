@@ -194,6 +194,7 @@ let parseMakeCredAuthData = (buffer) => {
 let verifyAuthenticatorAttestationResponse = (webAuthnResponse) => {
     let attestationBuffer = base64url.toBuffer(webAuthnResponse.response.attestationObject);
     let ctapMakeCredResp  = cbor.decodeAllSync(attestationBuffer)[0];
+    console.log('ctapMakeCredResp: ', ctapMakeCredResp)
 
     let response = {'verified': false};
     if(ctapMakeCredResp.fmt === 'fido-u2f') {
@@ -269,7 +270,9 @@ let verifyAuthenticatorAttestationResponse = (webAuthnResponse) => {
                 credID: base64url.encode(authrDataStruct.credID)
             }
         }
-    } else {
+    } 
+    
+    else {
         throw new Error('Unsupported attestation format! ' + ctapMakeCredResp.fmt);
     }
 

@@ -41,7 +41,15 @@
                         <input class="button-primary" type="submit" value="Register">
                       </fieldset>
                     </form>
-
+                    <form id="AdminRegister">
+                        <fieldset>
+                            <label for="name">name</label>
+                            <input type="text" name="name">
+                            <label for="username">username</label>
+                            <input type="text" name="username">
+                            <input class="button-primary" type="submit" value="Webauthn Register">
+                        </fieldset>
+                    </form>
                     <a href="#" id="toLogin">Already registered? Login page</a>
                 </div>
             </div>
@@ -59,12 +67,31 @@
                       </fieldset>
                     </form>
                     <form id="AdminLogin">
-                        <input class="button-primary" type="submit" value="Admin">
+                        <fieldset>
+                            <label for="username">username</label>
+                            <input type="text" name="username">
+                            <input class="button-primary" type="submit" value="Webauthn Login">
+                        </fieldset>
                     </form>
                     <a href="#" id="toRegistration">Not registered yet? Registration</a>
                 </div>
             </div>
-
+            <!--
+            <div class="column" id="adminRegisterContainer">
+                <div class="formcontainer">
+                    <h3>Admin Register page</h3>
+                    <form id="AdminRegister">
+                        <fieldset>
+                        <label for="name">name</label>
+                        <input type="text" name="name">
+                        <label for="username">username</label>
+                        <input type="text" name="username">
+                        <input class="button-primary" type="submit" value="Register">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            -->
             <div class="column" id="mainContainer">
 
                 <div class="secretcontainer">

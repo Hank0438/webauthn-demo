@@ -67,6 +67,7 @@ $('#AdminRegister').submit(function(event) {
     }
     getMakeCredentialsChallenge({username, name})
         .then((response) => {
+            console.log('newCredentialInfo: ', response)
             let publicKey = preformatMakeCredReq(response);
             return navigator.credentials.create({ publicKey })
         })
@@ -75,7 +76,10 @@ $('#AdminRegister').submit(function(event) {
             return sendWebAuthnResponse(makeCredResponse)
         })
         .then((response) => {
-            if(response.status !== 'ok') {
+            if(response.status === 'ok') {
+                alert(`Webauthn Register Success!`);
+                loadMainContainer() 
+            }else{
                 alert(`Server responed with error. The message is: ${response.message}`);
             }
         })
@@ -85,20 +89,21 @@ $('#AdminRegister').submit(function(event) {
 /* Handle for login form submission */
 $('#AdminLogin').submit(function(event) {
     event.preventDefault();
-    /*
+    
     let username = this.username.value;
     if(!username) {
         alert('Username is missing!')
         return
     }
-    */
     
-    let username = "admin";
-    let name     = "Hank";
+    
+    //let username = "admin";
+    //let name     = "Hank";
 
     getGetAssertionChallenge({username})
         .then((response) => {
             let publicKey = preformatGetAssertReq(response);
+            console.log('publicKey:', publicKey)
             return navigator.credentials.get({ publicKey })
         })
         .then((response) => {
@@ -107,6 +112,7 @@ $('#AdminLogin').submit(function(event) {
         })
         .then((response) => {
             if(response.status === 'ok') {
+                alert(`Webauthn Login Success!`);
                 loadMainContainer()   
             } else {
                 alert(`Server responed with error. The message is: ${response.message}`);
